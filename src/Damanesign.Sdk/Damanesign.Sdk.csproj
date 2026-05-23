@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>Damanesign.Sdk</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Damanesign</Authors>
+    <Company>Damanesign</Company>
+    <Description>Official .NET SDK for integrating Damanesign electronic signature APIs.</Description>
+    <PackageTags>damanesign;signature;esignature;sdk</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/damanesign/damanesign-dotnet-sdk</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/damanesign/damanesign-dotnet-sdk</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>
