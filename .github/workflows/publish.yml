@@ -1,0 +1,37 @@
+name: Publish to NuGet
+
+on:
+  release:
+    types:
+      - published
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build Damanesign.Sdk.sln --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet run --project tests/Damanesign.Sdk.Tests/Damanesign.Sdk.Tests.csproj --configuration Release --no-build
+
+      - name: Pack
+        run: dotnet pack src/Damanesign.Sdk/Damanesign.Sdk.csproj --configuration Release --no-build --output ./artifacts
+
+      - name: Publish
+        run: dotnet nuget push "./artifacts/*.nupkg" --source https://api.nuget.org/v3/index.json --skip-duplicate
